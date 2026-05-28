@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 98%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 5%;
+    --foreground: 0 0% 95%;
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 95%;
+    --border: 240 3.7% 18%;
+    --input: 240 3.7% 18%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 9999px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #374151;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+  }
+}
+
+@layer components {
+  .inline-edit-field {
+    @apply outline-none bg-transparent border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150 w-full;
+  }
+
+  .scene-card {
+    @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 hover:shadow-md transition-all duration-200;
+  }
+
+  .topic-header {
+    @apply flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded-full;
+  }
+
+  .btn-primary {
+    background-color: #6366f1;
+    color: white;
+    @apply font-medium px-4 py-2 rounded-lg transition-colors duration-150 flex items-center gap-2;
+  }
+
+  .btn-primary:hover {
+    background-color: #4f46e5;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium px-4 py-2 rounded-lg transition-colors duration-150 flex items-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 font-medium px-3 py-1.5 rounded-lg transition-colors duration-150 flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 cursor-pointer transition-colors duration-150;
+  }
+
+  .sidebar-item.active {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: #4338ca;
+    @apply font-medium;
+  }
+}
+
+/* TipTap Editor styles */
+.ProseMirror {
+  @apply outline-none min-h-[60px];
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #9ca3af;
+  pointer-events: none;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+}
+
+.dark .ProseMirror p.is-editor-empty:first-child::before {
+  color: #4b5563;
+}
+
+.ProseMirror p {
+  @apply my-1;
+}
+
+.ProseMirror strong {
+  @apply font-semibold;
+}
+
+.ProseMirror em {
+  @apply italic;
+}
+
+/* Drag handle */
+[data-dnd-draggable]:hover .drag-handle {
+  opacity: 1;
+}
+
+.drag-handle {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+/* Progress ring animation */
+@keyframes progress-fill {
+  from {
+    stroke-dashoffset: 100;
+  }
+}
+
+.progress-ring-fill {
+  animation: progress-fill 1s ease-out;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Context menu */
+.context-menu {
+  @apply fixed z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl py-1.5 min-w-48;
+}
+
+.context-menu-item {
+  @apply flex items-center gap-2.5 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors;
+}
