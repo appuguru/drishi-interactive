@@ -27,7 +27,7 @@ export function AnalyticsPanel({ topics, members, project }: Props) {
     const counts: Record<string, number> = {}
     allScenes.forEach(s => { counts[s.status] = (counts[s.status] || 0) + 1 })
     return Object.entries(counts).map(([status, count]) => ({
-      name: STATUS_CONFIG[status as any]?.label || status,
+      name: STATUS_CONFIG[status as keyof typeof STATUS_CONFIG]?.label || status,
       value: count,
       color: STATUS_COLORS[status],
     }))
