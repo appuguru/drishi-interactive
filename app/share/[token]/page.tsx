@@ -35,6 +35,7 @@ export default async function SharePage({ params }: { params: { token: string } 
       topics={(topics || []) as Topic[]}
       activity={activity || []}
       shareMode={project.share_mode}
+      shareToken={params.token}  // FIX: pass token so client can make edit API calls
     />
   )
 }
